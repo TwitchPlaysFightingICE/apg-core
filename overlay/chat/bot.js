@@ -28,7 +28,15 @@ client.on("message", async (channel, tags, message, self) => {
   // Ignore messages from the bot itself
   if (!self) {
     const lowercasedMessage = message.toLowerCase()
-    if (cmd.includes(lowercasedMessage)) {
+    if (lowercasedMessage === "s") {
+      const messageData = {
+        timestamp: new Date(),
+        displayName: tags["display-name"],
+        command: lowercasedMessage,
+      }
+      console.log(messageData)
+      socket.emit("commandS", messageData) // Emitting "commandS" event through Socket.IO
+    } else if (cmd.includes(lowercasedMessage)) {
       const messageData = {
         timestamp: new Date(),
         displayName: tags["display-name"],
