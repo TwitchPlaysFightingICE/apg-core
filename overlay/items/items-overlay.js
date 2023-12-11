@@ -44,7 +44,9 @@ socket.on("connect", () => {
 socket.on("commandS", () => {
   shuffledSequence.shift()
   console.log(`Send ${shuffledSequence[0]} to game`)
-  console.log(itemCommands[images.indexOf(shuffledSequence[0])])
+  const cmd = itemCommands[images.indexOf(shuffledSequence[0])]
+  console.log(cmd)
+  socket.emit("itemSelection", cmd)
   displayImages() // Call displayImages() to update the displayed images
 })
 

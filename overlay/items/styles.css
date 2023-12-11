@@ -7,6 +7,7 @@
   height: 350px;
   background-color: black;
   padding: 5px;
+  overflow: hidden;
 }
 
 .image-box {
@@ -35,5 +36,5 @@
 }
 
 .label-2 {
-  color: rgb(241, 241, 241);
+  color: rgb(189, 189, 189);
 }
