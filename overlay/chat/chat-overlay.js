@@ -14,8 +14,8 @@ function updateOverlay(displayName, command) {
 
   commandHistory.unshift(commandElement)
 
-  // Display only the last 21 commands
-  if (commandHistory.length > 21) {
+  // Display only the last 20 commands
+  if (commandHistory.length > 20) {
     const removedCommand = commandHistory.pop()
     overlayContainer.removeChild(removedCommand)
   }
@@ -35,10 +35,10 @@ function updateOverlay(displayName, command) {
 
   overlayContainer.appendChild(commandElement)
 
-  // Trigger the transition for the 21th command
-  if (commandHistory.length === 21) {
+  // Trigger the transition for the 20th command
+  if (commandHistory.length === 20) {
     setTimeout(() => {
-      commandHistory[21].classList.remove("latest-command")
+      commandHistory[20].classList.remove("latest-command")
     }, 1000) // Adjust the delay as needed
   }
 
