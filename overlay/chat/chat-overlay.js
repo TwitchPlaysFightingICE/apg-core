@@ -1,5 +1,25 @@
 // twitchChatOverlay.js
 // Keep track of the commands
+const predefinedColors = [
+  "Red",
+  "Blue",
+  "Green",
+  "Firebrick",
+  "Coral",
+  "Goldenrod",
+  "BlueViolet",
+  "Chocolate",
+  "CadetBlue",
+  "YellowGreen",
+  "SeaGreen",
+  "DodgerBlue",
+  "SpringGreen",
+  "OrangeRed",
+  "HotPink",
+]
+
+let userColors = {} // Object to store user-color mapping
+
 const commandHistory = []
 
 let latestCommandTimeout // Declare a variable to store the timeout
@@ -10,12 +30,32 @@ function updateOverlay(displayName, command) {
   const overlayContainer = document.getElementById("overlay")
   const commandElement = document.createElement("p")
   commandElement.className = "command"
-  commandElement.innerHTML = `<span class="display-name">${displayName}</span><span class="user-command">${upperCasedCommand}</span>`
+
+  let userColor = userColors[displayName] // Check if user has a color assigned
+
+  if (!userColor) {
+    // If the user doesn't have a color assigned, assign the next color from the list
+    userColor =
+      predefinedColors[Object.keys(userColors).length % predefinedColors.length]
+    userColors[displayName] = userColor // Store the color for the user
+  }
+
+  const displayNameSpan = document.createElement("span")
+  displayNameSpan.className = "display-name"
+  displayNameSpan.style.color = userColor
+  displayNameSpan.textContent = displayName
+
+  const userCommandSpan = document.createElement("span")
+  userCommandSpan.className = "user-command"
+  userCommandSpan.innerHTML = upperCasedCommand
+
+  commandElement.appendChild(displayNameSpan)
+  commandElement.appendChild(userCommandSpan)
 
   commandHistory.unshift(commandElement)
 
-  // Display only the last 21 commands
-  if (commandHistory.length > 21) {
+  // Display only the last 20 commands
+  if (commandHistory.length > 20) {
     const removedCommand = commandHistory.pop()
     overlayContainer.removeChild(removedCommand)
   }
@@ -35,10 +75,10 @@ function updateOverlay(displayName, command) {
 
   overlayContainer.appendChild(commandElement)
 
-  // Trigger the transition for the 21th command
-  if (commandHistory.length === 21) {
+  // Trigger the transition for the 20th command
+  if (commandHistory.length === 20) {
     setTimeout(() => {
-      commandHistory[21].classList.remove("latest-command")
+      commandHistory[20].classList.remove("latest-command")
     }, 1000) // Adjust the delay as needed
   }
 
