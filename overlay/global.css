@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Minecraft";
+  src: local("/fonts/Minecraft.ttf") format("truetype");
+}
+
+body {
+  font-family: Minecraft;
+  /* Use fallback fonts like 'sans-serif' in case the custom font doesn't load */
+  font-size: 24px;
+  overflow: hidden;
+}

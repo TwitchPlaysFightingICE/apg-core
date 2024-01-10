@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Uptime Counter</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+  <p style="color: white">UPTIME: <span id="uptime"></span></p>
+
+  <script>
+    function updateUptime() {
+      let startTime = new Date() // Get the time when the page is loaded
+
+      setInterval(function () {
+        let currentTime = new Date()
+        let elapsedTime = currentTime - startTime // Calculate elapsed time in milliseconds
+
+        let days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24))
+        let hours = Math.floor((elapsedTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        let minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60))
+        let seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000)
+
+        // Format the uptime string
+        let uptimeString = `${days}d${hours.toString().padStart(2, '0')}h${minutes.toString().padStart(2, '0')}m${seconds.toString().padStart(2, '0')}s`
+
+        // Update the HTML element with the uptime
+        document.getElementById("uptime").textContent = uptimeString
+      }, 1000) // Update every second (1000 milliseconds)
+    }
+
+    // Call the function when the page is loaded
+    window.onload = updateUptime;
+  </script>
+</body>
+
+</html>

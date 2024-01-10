@@ -1,0 +1,40 @@
+/* styles.css */
+/* Style your overlay here */
+.image-container {
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  background-color: black;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.image-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  /* Add some space between the images */
+  width: 150px;
+  height: 150px;
+}
+
+.image-box img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.label-1 {
+  color: rgb(255, 47, 151);
+}
+
+.label-2 {
+  color: rgb(189, 189, 189);
+}

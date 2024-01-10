@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Current Date and Time</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    function updateDateTime() {
+      const dateElement = document.getElementById('date-time')
+      const now = new Date()
+
+      // Timezone adjustment for JST (Japan Standard Time)
+      const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Tokyo' }
+      const jstTime = now.toLocaleString('en-US', options)
+
+      const [date, time] = jstTime.split(', ')
+      const [month, day, year] = date.split('/')
+      const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+      const formattedDateTime = formattedDate + ' ' + time
+      // const formattedDateTime = date.replace(/\//g, '-') + ' ' + time
+      dateElement.textContent = formattedDateTime
+    }
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000)
+
+    // Ensure it's updated immediately when the page loads
+    window.onload = function () {
+      updateDateTime()
+    };
+  </script>
+</head>
+
+<body>
+  <p style="color: white">Date & Time: JST <span id="date-time"></span></p>
+</body>
+
+</html>
